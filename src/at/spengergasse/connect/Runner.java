@@ -9,8 +9,9 @@ import javafx.scene.image.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
-import javafx.scene.shape.Circle;
+
 
 /**
  * https://carlfx.wordpress.com/tag/collision-detection/   
@@ -50,8 +51,8 @@ public class Runner extends Application {
 
        
 
-        movePlayerTo(W / 2, H / 2,player1);
-        movePlayerTo(W/4, H/4,player2);
+        player1.relocate(W/2,H/2 );
+        player2.relocate(W/4, H/4);
 
         
 
@@ -158,7 +159,8 @@ public class Runner extends Application {
         if (x - cx >= 0 &&
             x + cx <= W &&
             y - cy >= 0 &&
-            y + cy <= H ) {
+            y + cy <= H &&
+            checkPlayerCollision(player1, player2)!=true) {
             player.relocate(x - cx, y - cy);
         }
     }
@@ -166,6 +168,7 @@ public class Runner extends Application {
     public boolean checkPlayerCollision(Node player1, Node player2) {
     	if(player1.getBoundsInParent().intersects(player2.getBoundsInParent()))return true;
     	else return false;
+
     	
     }
 
