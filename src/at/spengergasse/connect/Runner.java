@@ -13,12 +13,13 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Circle;
 
 /**
- * Hold down an arrow key to have your player1 move around the screen.
- * Hold down the shift key to have the player1 run.
+ * https://carlfx.wordpress.com/tag/collision-detection/   
  */
 public class Runner extends Application {
-
-    private static double W = 600, H = 400;
+	
+	
+    private double W = 600, H = 400;
+    //private int[][] ar = new int[(int) W][(int) H];
 
 
     boolean running, goNorth, goSouth, goEast, goWest;
@@ -49,7 +50,8 @@ public class Runner extends Application {
 
        
 
-        movePlayer1To(W / 2, H / 2);
+        movePlayerTo(W / 2, H / 2,player1);
+        movePlayerTo(W/4, H/4,player2);
 
         
 
@@ -94,7 +96,8 @@ public class Runner extends Application {
                 if (goWest)  dx -= 5;
                 if (running) { dx *= 3; dy *= 3; }
 
-                movePlayer1By(dx, dy);
+                movePlayerBy(dx, dy,player1);
+                System.out.println(checkPlayerCollision(player1, player2));
             }
         };
         timer.start();
@@ -136,46 +139,52 @@ public class Runner extends Application {
     	
     }
 
-    private void movePlayer1By(int dx, int dy) {
+    private void movePlayerBy(int dx, int dy,Node player) {
         if (dx == 0 && dy == 0) return;
 
-        final double cx = player1.getBoundsInLocal().getWidth()  / 2;
-        final double cy = player1.getBoundsInLocal().getHeight() / 2;
+        final double cx = player.getBoundsInLocal().getWidth()  / 2;
+        final double cy = player.getBoundsInLocal().getHeight() / 2;
 
-        double x = cx + player1.getLayoutX() + dx;
-        double y = cy + player1.getLayoutY() + dy;
+        double x = cx + player.getLayoutX() + dx;
+        double y = cy + player.getLayoutY() + dy;
 
-        movePlayer1To(x, y);
+        movePlayerTo(x, y,player);
     }
 
-    private void movePlayer1To(double x, double y) {
-        final double cx = player1.getBoundsInLocal().getWidth()  / 2;
-        final double cy = player1.getBoundsInLocal().getHeight() / 2;
-
+    private void movePlayerTo(double x, double y,Node player) {
+        final double cx = player.getBoundsInLocal().getWidth()  / 2;
+        final double cy = player.getBoundsInLocal().getHeight() / 2;
+        
         if (x - cx >= 0 &&
             x + cx <= W &&
             y - cy >= 0 &&
-            y + cy <= H) {
-            player1.relocate(x - cx, y - cy);
+            y + cy <= H ) {
+            player.relocate(x - cx, y - cy);
         }
+    }
+    
+    public boolean checkPlayerCollision(Node player1, Node player2) {
+    	if(player1.getBoundsInParent().intersects(player2.getBoundsInParent()))return true;
+    	else return false;
+    	
     }
 
     public static void main(String[] args) { launch(args); }
 
     
-	public static double getW() {
+	public  double getW() {
 		return W;
 	}
 
-	public static void setW(double w) {
+	public  void setW(double w) {
 		W = w;
 	}
 
-	public static double getH() {
+	public  double getH() {
 		return H;
 	}
 
-	public static void setH(double h) {
+	public  void setH(double h) {
 		H = h;
 	}
     
