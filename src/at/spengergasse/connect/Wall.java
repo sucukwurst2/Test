@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class Wall {
 	private Rectangle rect;
-	private static final String imgpath = "file:///C:/Users/Niki/git/Test/img/wall.png";
+	private static final String imgpath = "file:///C:/Users/Niki/git/Test/src/img/wall.png";
 	private StackPane wall;
 	private ImageView img;
 	private double x,y;

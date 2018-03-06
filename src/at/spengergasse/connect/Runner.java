@@ -31,7 +31,7 @@ public class Runner extends Application {
 
     boolean running, goNorth, goSouth, goEast, goWest;
     private static final String IMG_1 =
-            "file:///C:/Users/Niki/git/Test/img/player1.png", IMG_2 = "file:///C:/Users/Niki/git/Test/img/player2.png",BACKGROUND = "file:///C:/Users/Niki/git/Test/img/boden.png";
+            "file:///C:/Users/Niki/git/Test/src/img/player1.png", IMG_2 = "file:///C:/Users/Niki/git/Test/src/img/player2.png",BACKGROUND = "file:///C:/Users/Niki/git/Test/src/img/boden.png";
 
     private Image playerImage1,playerImage2,image;
     private Node  player1;
