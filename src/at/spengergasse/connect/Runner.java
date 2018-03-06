@@ -22,6 +22,7 @@ import java.net.Socket;
 
 /**
  * https://carlfx.wordpress.com/tag/collision-detection/   
+ * hallo
  */
 public class Runner extends Application {
 	
